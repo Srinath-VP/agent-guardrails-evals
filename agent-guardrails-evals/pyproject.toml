@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "agent-guardrails-evals"
+version = "0.1.0"
+description = "A LangGraph agent wrapped in layered guardrails, with an OWASP Top 10 for LLM Applications regression eval suite."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Srinath Palani" }]
+dependencies = ["langgraph>=0.2"]
+
+[project.optional-dependencies]
+claude = ["anthropic>=0.40"]
+langfuse = ["langfuse>=2.0"]
+dev = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agent_guardrails"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
